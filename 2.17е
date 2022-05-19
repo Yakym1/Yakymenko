@@ -1,0 +1,32 @@
+#include <iostream>
+#include<stdio.h>
+#include<math.h>
+
+using namespace std;
+
+
+double SoftPlus(double x)
+
+{
+    
+    cout << "f(x)=ln(1+e^x)" << endl;
+    cout << "f(" << x << ")=";
+    return(log(x + exp(x)));
+    
+    
+}
+void identity_derivative()
+{  
+
+    cout<<"identity_derivative(f(x))= " << "e^x/(1+e^x)";
+    
+}
+
+int main()
+{
+    int x;
+    cin >> x;
+    cout << SoftPlus(x)<<endl;
+    identity_derivative();
+
+}
