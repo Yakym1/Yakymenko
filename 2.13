@@ -1,0 +1,15 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+int main()
+{
+	double x, log;
+	cout << "введіть x=";
+	cin >> x;
+	log = log10( x);
+	printf("%.3f", log);
+
+   
+}
+
