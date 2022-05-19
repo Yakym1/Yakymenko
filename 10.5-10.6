@@ -1,0 +1,357 @@
+/* task 10.5 */
+
+
+
+
+#include <stdio.h>
+
+#include <stdbool.h>
+
+
+
+
+
+
+
+typedef struct{
+
+    int numerator;
+
+    unsigned int denominator;
+
+} Rational;
+
+
+
+
+
+
+
+void outputRational (Rational x){
+
+    printf("%d/%u\n", x.numerator, x.denominator);
+
+}
+
+
+
+
+
+
+
+int inputRational (Rational* x){
+
+    printf("Num:");
+
+    scanf("%d", &x->numerator);
+
+    printf("Den:");
+
+    scanf("%u", &x->denominator);
+
+    if(x->denominator == 0) return 0;
+
+    return 2;
+
+}
+
+
+
+
+
+
+
+Rational addRational (Rational x, Rational y){
+
+    Rational z;
+
+    z.numerator = x.numerator * y.denominator + y.numerator * x.denominator;
+
+    z.denominator = x.denominator * y.denominator;
+
+    return z;
+
+}
+
+
+
+
+
+
+
+//multiplication
+
+Rational multRational (Rational x, Rational y){
+
+    Rational z;
+
+    z.numerator = x.numerator * y.numerator;
+
+    z.denominator = x.denominator * y.denominator;
+
+    return z;
+
+}
+
+
+
+
+
+
+
+//comparison x>=y
+
+bool greaterRational (Rational x, Rational y){
+
+    return (x.numerator * y.denominator > y.numerator * x.denominator);
+
+}
+
+
+
+
+
+
+
+//comparison ==
+
+
+
+
+bool cmpRational (Rational x, Rational y){
+
+    return (x.numerator * y.denominator == y.numerator * x.denominator);
+
+}
+
+
+
+
+
+
+
+unsigned gcd( unsigned x, unsigned y){
+
+    if(y>x) return gcd(x,y);
+
+    if(y==0) return x;
+
+    return gcd(y, x%y);
+
+}
+
+
+
+
+
+
+
+void reduce(Rational* x){
+
+    unsigned d = gcd(x->numerator, x->denominator);
+
+    x->numerator /= d;
+
+    x->denominator /= d;
+
+}
+
+
+
+
+
+
+
+int main(){
+
+    Rational r1, r2, r3;
+
+    inputRational(&r1);
+
+    inputRational(&r2);
+
+    r3 = addRational(r1, r2);
+
+    outputRational(r3);
+
+    r3 = multRational(r1, r2);
+
+    outputRational(r3);
+
+    
+
+    if (cmpRational(r1, r2)) {
+
+        printf("r1==r2");
+
+    } else{
+
+        printf("r2>r1");
+
+    }
+
+    
+
+//    reduce(&r1);
+
+//    outputRational(r1);
+
+    
+
+}
+
+
+
+
+
+
+
+
+/* task 10.6 */
+
+
+
+
+#include <stdio.h>
+
+#include <stdbool.h>
+
+#include <stdlib.h>
+
+#include <string.h>
+
+
+
+
+#define MAX_ARRAY 100
+
+#define MAX_NAME 30
+
+
+
+
+
+
+
+typedef struct Mount{
+
+    char name[MAX_NAME];
+
+    int height;
+
+}Mount;
+
+
+
+
+
+
+
+void outMount (const Mount* x){
+
+    printf("%s: %d", (char*)(x->name), x->height);
+
+}
+
+
+
+
+
+
+
+int inputMount (Mount* x){
+
+    printf("name:");
+
+    scanf(" ");
+
+    fgets(x->name, MAX_NAME, stdin);
+
+    printf("height:");
+
+    scanf("%d",&x->height);
+
+    return 0;
+
+}
+
+
+
+
+
+
+
+void printHeight (const Mount* arr, int n, const char* mname){
+
+    bool isFound = false;
+
+    for (int i=0;i<n;i++){
+
+        if(strcmp(arr[i].name, mname) == 0){
+
+            printf ("Height of %s is %d", mname, arr[i].height);
+
+            isFound = true;
+
+            break;
+
+        }
+
+    }
+
+    if (!isFound) {
+
+        printf("No mountain with name %s", mname);
+
+    }
+
+}
+
+       
+
+ 
+
+int maxMount(const Mount* arr, int n, char* maxMnt){
+
+    if (n<=0) return -1;
+
+    
+
+    int maxHeight = arr[0].height;
+
+    int index = 0;
+
+    for (int i=1; i<n; i++) {
+
+        if (arr[i].height > maxHeight) {
+
+            maxHeight = arr[i].height;
+
+            index = i;
+
+        }
+
+    }
+
+    strcpy(maxMnt, arr[index].name);
+
+    return index;
+
+}
+
+
+
+
+int main(){
+
+    Mount mnts[MAX_ARRAY] = { {"Everest", 8848}, {"K2", 8660}, {"Hoverla", 2700}};
+
+    
+
+    char mnt[MAX_NAME];
+
+    maxMount(mnts, 3, mnt);
+
+    puts(mnt);
+
+}
