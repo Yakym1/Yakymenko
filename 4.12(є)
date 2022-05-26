@@ -1,0 +1,25 @@
+#include <iostream>
+#include <locale>
+#include <cmath>
+using namespace std;
+
+
+
+int main() {
+    std::locale::global(std::locale(""));
+    double eps;
+    int n = 0;
+    double Sum = 0.0, a=1.0 ;
+    cin >> eps;
+    while (abs(a) > eps)
+    {
+        a = (pow(-1, n) / pow(16, n)) * ((double)8 / (8 * n + 2) + (double)4 / (8 * n + 3) + (double)4 / (8 * n + 4) - (double)1 / (8 * n + 7));
+        Sum += a;
+        n++;
+    }
+    cout<< Sum/2<< endl;
+    system("pause");
+    return 0;
+
+
+}
