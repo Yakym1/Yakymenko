@@ -1,0 +1,29 @@
+//home 7.11.b
+#include <iostream>
+#include <math.h>
+
+int main() {
+	int n, i;
+	double x, h0, h1, hn;
+	printf("n = ");
+	scanf_s("%d", &n);
+	printf("x = ");
+	scanf_s("%lf", &x);
+	h0 = 1;
+	h1 = 2 * x;
+	if (n > 256) {
+		printf("ERROR\n");
+	}
+	i = 2;
+	if (n < 256) {
+		while (i <= n) {
+			hn = 2 * x * h1 - 2 * (i - 1) * h0;
+			h0 = h1;
+			h1 = hn;
+			i++;
+			printf("H(%d)=%lf\n", i, hn);
+		}
+
+	}
+
+}
