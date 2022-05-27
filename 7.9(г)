@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+#define n 9 //n змінюємо ось тут
+
+void main(void)
+{
+    int a[n];
+    int i, minim;
+
+    for (i = 0; i < n; i++)
+    {
+        cout << "a"<<i<<"=";
+        cin >> a[i];
+    }
+    for (i = 0; i < n; i++)
+
+        minim = a[1];
+
+    for (i = 1; i < n; i+=2)
+        if (a[i] < minim)
+        {
+            minim = a[i];
+        }
+
+    cout << "minimum=" << minim << endl;
+
+
+}
