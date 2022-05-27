@@ -1,0 +1,27 @@
+#include <iostream>
+#include<cmath>
+using namespace std;
+
+int main()
+{
+    int b1 = 1, b2 = 1,b3=1, bn;
+    int count;
+    cout << "enter n:" << endl;
+    cin >> count;
+    float sum = 0.875;
+    for (int n = 4; n <= count; n++) // вычисляет последующие после b1, b2  n элементов
+    {
+        bn = b1 + b3;
+        cout << "b" << n << "=" << bn << " "<<endl;
+        b1 = b2;
+        b2 = b3;
+        b3 = bn;
+        sum += (bn / (pow(2, n)));
+
+    }
+    cout <<"sum=" << sum << endl;
+
+
+    system("PAUSE");
+    return 0;
+}
