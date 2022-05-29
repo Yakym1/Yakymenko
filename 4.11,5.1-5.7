@@ -1,0 +1,299 @@
+//4.11
+
+#include <stdio.h>
+#include <float.h>
+#include <math.h>
+
+int main(int argc, char **argv)
+{
+    int i;
+    double x, sum = 0., sum1 = 0.;
+    i = 0;
+    while(1)
+    {
+        printf("a[%d] = ", i);
+        scanf("%lf", &x);
+        
+        if(fabs(x) <= 2 * DBL_EPSILON) break;
+        
+        sum += x;
+        sum1 += 1/x;
+        i++;
+    }
+    printf("average_a = %lf, average_g = %lf", sum/i, i/sum1);
+}
+
+
+//5.1
+
+
+
+#include <stdio.h>
+
+int h(double a)
+{
+    double k = 1.0, s = 1.0;
+    
+    while(s<a)
+    {
+        k++;
+        s += 1/k;
+    }
+    printf("s = %lf\n", s);
+    return(int) k;
+}
+
+int main()
+{
+    double a;
+    scanf("%lf", &a);
+    printf("n = %d\n", h(a));
+}
+
+
+
+
+//5.2
+
+#include <stdio.h>
+
+int Fibonacci(int n)
+{
+    int F0, F1, F;
+    F0 = F1 = 1;
+    
+    for(int i=2; i<=n; i++)
+    {
+        F = F0 + F1;
+        F0 = F1;
+        F1 = F;
+    }
+    return F;
+}
+
+int Sum(int k)
+{
+    int F0, F1, F, s = 2;
+    F0 = F1 = 1;
+    
+    while(F1<k)
+    {
+       F = F0 + F1;
+       F0 = F1;
+       F1 = F;
+       s += F;
+    }
+    return s - F;
+}
+
+int main()
+{
+    int n;
+    printf("S = %d\n", Sum(1000));
+}
+
+
+
+//5.3
+
+
+
+
+#include <stdio.h>
+#include <stdbool.h>
+
+int printALLKOLLATZ(unsigned n, bool toPrint)
+{
+    unsigned a = n;
+    int i = 0;
+    
+    while(a!=1)
+    {
+        if(a%2==0)
+        {
+            a = a / 2;
+        }
+        else
+        {
+            a = 3 * a + 1;
+        }
+        i++;
+        if(toPrint)
+        printf("a%d = %u; ", i, a);
+        
+    }
+    return i;
+}
+
+int main()
+{
+    unsigned koll, i, n;
+    printf("n = ");
+    scanf("%u", &n);
+    
+    int max = 0, m;
+    unsigned k;
+    
+    for(unsigned i=1;i<=1000;++i)
+    {
+        m = printALLKOLLATZ(i,false);
+        
+        if(max<m)
+        {
+            max = m;
+            k = i;
+        }
+    }
+    printf("k = %u\n", k);
+    printALLKOLLATZ(k,true);
+}
+
+
+
+
+
+//5.4
+
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+double P1(const unsigned n)
+{
+    double product = 1, t = 1;
+    
+    for(unsigned i=1;i<=n;i++)
+    {
+        t *= i;
+        product *= (1 + 1.0 / t);
+    }
+    return product;
+}
+
+
+double P2(const unsigned n)
+{
+    double product = 1, t = 1;
+    
+    for(unsigned i=1;i<=n;i++)
+    {
+        product *= (1 + t / (i * i));
+        t *= -1;
+    }
+    return product;
+}
+
+
+int main()
+{
+    unsigned n;
+    printf("n = ");
+    scanf("%u", &n);
+    printf("P_%f = %g\n", P1(n));
+    printf("P_%f = %g\n", P2(n));
+}
+
+
+
+
+//5.5
+
+
+#include <stdio.h>
+#include <stdlib.h>
+
+size_t m()
+{
+    size_t n = 3;
+    int x, x1, x2, x3;
+    x1 = x2 = x3 = -99;
+    
+    while(x3<0)
+    {
+        x = x1 + x3 + 100;
+        printf("%d = %d + %d + 100\n", x, x1, x3);
+        
+        x1 = x2;
+        x2 = x3;
+        x3 = x;
+        n++;
+    }
+    return n;
+}
+
+int main()
+{
+    printf("%zu", m());
+}
+
+
+//5.7
+
+
+
+
+#include <stdio.h>
+
+void t7()
+{
+    int n;
+    printf("n = ");
+    scanf("%d", &n);
+    
+    double b0 = 1, b1 = 0, bk;
+    double a0 = 0, a1 = 1, ak;
+    
+    double s = 2.0 / (a0 + b0);;
+    
+    if(n==1)
+    {
+        printf("s = %lf", s);
+        return;
+    }
+    
+    s += 4.0 / (a1 + b1);
+    
+    if(n==2)
+    {
+        printf("s = %lf", s);
+        return;
+    }
+    
+    double p = 4.0;
+    
+    for(int k=3;k<=n;++k)
+    {
+        bk = b1 + a1;
+        ak = a1 / k + a0 * bk;
+        
+        p *= 2.0;
+        s += p / (ak + bk);
+        
+        b0 = b1;
+        b1 = bk;
+        a0 = a1;
+        a1 = ak;
+    }
+    printf("s = %lf", s);
+}
+
+int main()
+{
+    t7();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
