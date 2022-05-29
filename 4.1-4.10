@@ -1,0 +1,217 @@
+
+//4.1
+
+#include <stdio.h>
+#include <math.h>
+
+int main() 
+{
+    double y, x;
+    unsigned n;
+    printf("n = ");
+    scanf("%u", &n);
+    printf("x = ");
+    scanf("%lf", &x);
+    
+    y = x;
+    for(unsigned i=0;i<n;i++)
+    {
+        y = sin(y);
+    }
+    printf("Y = %lf", y);
+}
+
+//4.2
+
+#include <stdio.h>
+
+int main()
+{
+    unsigned n;
+    printf("n = ");
+    scanf("%u", &n);
+    printf("%u = 1", n);
+    
+    for(unsigned i=2;i<=n;++i)
+    {
+        printf("*%u", i);
+    }
+    printf("\n");
+    printf("%u = %u", n, n);
+    
+    for(unsigned i=n-1;i>=1;i--)
+    {
+        printf("*%u", i);
+    }
+}
+
+
+// 4.3
+
+
+#include <stdio.h>
+
+int main()
+{
+    int n;
+    float x, y, k;
+    printf("x, n:");
+    scanf("%f, %d", &x, &n);
+    
+    k = 1;
+    y = 1;
+    for(int i=0;i<n;i++)
+    {
+        k *= x;
+        y += k;
+    }
+    printf("y = %f", y);
+}
+
+
+//4.5
+
+#include <stdio.h>
+
+int main()
+{
+    unsigned n;
+    scanf("%u", &n);
+    unsigned long long k = 1UL;
+    for(unsigned i=n;i>=2;i-=2)
+    {
+        k *= i;
+    }
+    printf("%u!! = %Lu \n", n, k);
+}
+
+//4.6
+
+
+#include <stdio.h>
+#include <math.h>
+
+int main()
+{
+    unsigned n;
+    printf("n = ");
+    scanf("%u", &n);
+    double total = sqrt(2);
+    
+    for(unsigned i=1;i<n;i++)
+    {
+        total = sqrt(2 + total);
+    }
+    printf("total = %g\n", total);
+
+}
+
+
+
+//4.7
+
+
+
+#include <stdio.h>
+#include <math.h>
+
+double exp1(double x, int n)
+{
+    double k = 1;
+    double y = 1;
+    int i = 1;
+    while(i<=n)
+    {
+       k *= (x/i);
+       y += k;
+       i++;
+    }
+    return y;
+}
+
+int main()
+{
+    int n;
+    double x, y;
+    scanf("%d", &n);
+    scanf("%lf", &x);
+    y = exp1(x,n);
+    printf("y = %lf, %lf", y, exp(x));
+}
+
+//4.8
+
+
+
+#include <stdio.h>
+#include <float.h>
+
+int main()
+{
+    int m;
+    scanf("%d", &m);
+    if(m<1)
+    {
+        printf("incorrect");
+        return 0;
+    }
+    int k = 1, r = 0;
+    while(k<m)
+    {
+        k *= 4;
+        r++;
+    }
+    printf("4^%d < %d", r-1,m);
+}
+
+
+
+
+
+//4.9
+
+
+
+
+#include <stdio.h>
+#include <float.h>
+
+int main()
+{
+    int n;
+    scanf("%d", &n);
+    
+    int p=1, r=0;
+    do
+    {
+       p *= 2;
+       r++;
+    }while(p<n);
+    
+    printf("2^%d > %d", r, n);
+
+}
+
+
+
+//4.10
+
+
+
+#include <stdio.h>
+#include <float.h>
+
+int main()
+{
+    double eps = 1.0;
+    int k = 0;
+    
+    do
+    {
+       eps = eps / 2;
+       k++;
+    }while(1.0 + eps != 1.0);
+    
+    printf("k = %d, zero = %g, %g", k, eps*2, DBL_EPSILON);
+
+}
