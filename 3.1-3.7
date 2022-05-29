@@ -1,0 +1,154 @@
+// 3.1
+
+#include <stdio.h>
+
+void A(int n) 
+{
+  int a = n / 100;
+  int b = (n / 10) % 10;
+  int c = n % 10;
+  
+  printf("%d, %d, %d\n", a, b, c);
+}
+
+void B(int n) 
+{
+  int a = n / 100;
+  int b = (n / 10) % 10;
+  int c = n % 10;
+  int d = a + b + c;
+  
+  printf("%d\n", d);
+}
+
+void C(int n)
+{
+  int a = n / 100;
+  int b = (n / 10) % 10;
+  int c = n % 10;
+  int d = c * 100 + b * 10 + a;
+  
+  printf("%d\n", d);
+}
+
+int main()
+{
+  int n;
+  
+  printf("n = ");
+  scanf("%d", &n);
+  
+  if (n > 99 && n < 1000)
+  {
+    A(n);
+    B(n);
+    C(n);
+  }
+  else
+  {
+    printf("%d Задане число не тризначне\n", n);
+  }
+}
+    
+    
+    
+    
+    // 3.3
+
+#include <stdio.h>
+#include <inttypes.h>
+
+int main() 
+{
+    int32_t a, b, c;
+    printf("a, b, c = ");
+    scanf("%d, %d, %d", &a, &b, &c);
+    
+    int32_t d = a * b * c; 
+    printf("m1 = %d\n", d);
+
+    int64_t d1 = (int64_t)a * b * c;
+    printf("m2 = %" PRId64"\n", d1);
+}
+
+
+
+
+// 3.4
+
+#include <stdio.h>
+#include <inttypes.h> 
+
+uint16_t D(uint8_t a,uint8_t b)
+{
+    return(uint16_t)a * b;
+}
+
+int main() 
+{
+    uint8_t a, b;
+    
+    scanf("%hhu", &a); 
+    scanf("%hhu", &b);
+    printf("%hu", D(a,b)); 
+}
+
+
+
+
+// 3.5
+
+#include <stdio.h>
+
+int main() 
+{
+    unsigned a, b;
+    scanf("%u, %u", &a,&b);
+    
+    if (a > b)
+    {
+        printf("max = %u min = %u", a, b);
+    }
+    else
+    {
+        printf("max = %u min = %u", b, a);
+    }
+}
+
+
+
+
+// 3.6
+
+#include <stdio.h>
+#include <math.h>
+
+int main() 
+{
+    float a, b, c;
+    scanf("%f, %f, %f", &a, &b, &c);
+    
+    a = fabs(a);
+    b = fabs(b);
+    c = fabs(c);
+    
+    float min = a, max = b;
+    
+    if (b < a)
+    {
+        min = b;
+        max = a;
+    }
+    
+    if (min > c)
+    {
+        min = c;
+    }
+    
+    if (max < c)
+    {
+        max = c;
+    }
+    
+    printf("max = %f min = %f", max, min);
+}
