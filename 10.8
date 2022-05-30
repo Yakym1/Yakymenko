@@ -1,0 +1,57 @@
+#include <iostream>
+#include <vector>
+#include <string>
+ 
+struct Journal
+{
+    std::string     name;
+    size_t          circulation;
+    double          price;
+};
+ 
+int main()
+{
+    const size_t N = 3;
+    std::vector <Journal> vect;
+    
+    for (size_t i = 0; i < N; ++i)
+    {
+        Journal tt;
+        std::cout << "\n Name Journal : ";
+        getline(std::cin, tt.name);
+        std::cout << " Input circulation = ";
+        std::cin >> tt.circulation;
+        std::cout << " Input price = ";
+        std::cin >> tt.price;
+        vect.emplace_back(tt);
+        std::cin.ignore();
+    }
+ 
+    size_t count_circul = 0;
+    double summ_price = 0.;
+ 
+    for (const auto & el : vect)
+    {
+        if (el.circulation < 10000)
+        {
+            count_circul += el.circulation; summ_price += (el.price * el.circulation);
+        }
+    }
+ 
+    if (count_circul == 0)
+    {
+        std::cout << " No journal < 10000 ";
+        system("pause");
+        return 0;
+    }
+    
+    else
+    {
+        for (const auto & el : vect)
+            if (el.circulation < 10000)
+                std::cout << '\n' << el.name << "   " << el.circulation << "   " << el.price;
+ 
+        std::cout << "\n Averege price = " << summ_price / count_circul << '\n';
+    }
+    system ("pause");
+}
