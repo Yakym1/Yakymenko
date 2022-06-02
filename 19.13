@@ -1,0 +1,24 @@
+#include <vector>
+#include <string>
+#include <iostream>
+using namespace std;
+vector <int> addition(const vector <char>&  A, int baseA, const vector <char>& B, int baseB, int baseResult) {
+    //тут перетворення з символьного типу до числового  однієї системи числення
+    // Додавання
+    // Перетворення до до системи числення результату 
+    vector <int> v_int;
+    v_int.push_back(23);
+    return v_int;
+}
+
+
+int main()
+{
+    vector < char > v_str_A;
+    v_str_A.push_back(123);
+    vector < char > v_str_B;
+    v_str_B.push_back(234);
+   vector <int> a = addition(v_str_A, 10, v_str_B, 10, 10);
+   
+    return 0;
+}
