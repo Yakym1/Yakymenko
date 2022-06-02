@@ -1,0 +1,98 @@
+#include <iostream>
+#include <cstdlib>
+#include <cmath>
+#include <conio.h>
+#include <cstring>
+
+using namespace std;
+
+class QE
+{
+public:
+	double a = 0;
+	double b = 0;
+	double c = 0;
+	double d = b * b - 4 * a * c;
+	QE(double A, double B, double C)
+	{
+		a = A;
+		b = B;
+		c = C;
+		d = B * B - 4 * A * C;
+	}
+	void show()
+	{
+		cout << "QE: " << a << "*x^2 + " << b << "*x + " << c  << " = 0" << endl;
+	}
+	double* roots()
+	{
+		double rts[2] = { 0, 0 };
+		rts[0] = ((-b) + sqrt(d)) / (2 * a);
+		rts[1] = ((-b) - sqrt(d)) / (2 * a);
+		return rts;
+	}
+	double root1()
+	{
+		return -(b / (2 * a));
+	}
+	void extrem()
+	{
+		cout << "Extremum: x0 = " << (-b / (2 * a)) << " ; f(x0) = " << ((-b / (2 * a)) * (-b / (2 * a)) * a + (-b / (2 * a)) * b + c) << endl;
+	}
+	void intervals()
+	{
+		if (a > 0) cout << "Interval of decrease: x E (-infinity; " << (-b / (2 * a)) << ").  Interval of increase: x E (" << (-b / (2 * a)) << "; +infinity)." << endl;
+		else cout << "Interval of increase: x E (-infinity; " << (-b / (2 * a)) << ").  Interval of decrease: x E (" << (-b / (2 * a)) << "; +infinity)." << endl;
+	}
+	~QE()
+	{
+		cout << "Destroyed" << endl;
+	}
+};
+
+
+int main()
+{
+	system("COLOR F0");
+	cout << "Task 15.16" << endl;
+	QE qe1 = QE(5, 4, -3);
+	qe1.show();
+	cout << *qe1.roots() << "   " << *(qe1.roots() + 1) << endl;
+	qe1.extrem();
+	qe1.intervals();
+	QE qei[3] = { QE(5, 4, -3), QE(1, 4, 4), QE(3, 2, -1) };
+	double r[6] = { 0,0,0,0,0,0 };
+	int j = 0;
+	for (int i = 0; i < 3; i++)
+	{
+		if (qei[i].d > 0) {
+			r[j] = *qei[i].roots(); j++; r[j] = *(qei[i].roots() + 1); j++;
+		}
+		else { r[j] = qei[i].root1(); j++; }
+	}
+	cout << "Roots of our quadrat eguations:\n";
+	for (int i = 0; i < 6; i++)
+	{
+		if (r[i] != 0) cout << r[i] << "\t";
+	}
+	cout << endl;
+	double max = r[0];
+	for (int i = 0; i < 6; i++) {
+		if (r[i] > max) {
+			max = r[i];
+		}
+	}
+    cout << "max root: " << max << endl;
+	double min = r[0];
+	for (int i = 0; i < 6; i++) {
+		if (r[i] < min) {
+			min = r[i];
+		}
+	}
+	cout << "min root: " << min << endl;
+
+
+
+	system("PAUSE");
+	return 0;
+}
