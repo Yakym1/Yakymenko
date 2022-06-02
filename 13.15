@@ -1,0 +1,27 @@
+#include <iostream>
+#include <sstream>
+#include <string>
+ 
+using namespace std;
+ 
+int main()
+{   
+    setlocale(LC_CTYPE, "ukr");
+    string s, word;
+    char CharInvite;
+    cout << "Стрічка:\n";
+    getline(cin, s);
+    cout << "Введіть символ:";
+    cin >> CharInvite;
+    stringstream str(s);
+    cout << "Слова, що закінчуються на букву:\n";
+    while (str >> word)
+    {
+        if (word[word.size() - 1] == CharInvite)
+        {
+            cout << word << "\n";
+        }
+    }
+    system("pause");
+    return 0;
+}
