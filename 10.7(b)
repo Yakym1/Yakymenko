@@ -1,0 +1,52 @@
+
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <limits.h> 
+#pragma warning(disable : 4996) 
+
+typedef struct date {
+	unsigned int day = 0;
+	unsigned int month = 0;
+	unsigned int year = 0;
+};
+
+typedef struct time {
+	unsigned int h = 0;
+	unsigned int m = 0;
+};
+
+date input_date() {
+	date d;
+	printf("Enter day ");
+	scanf_s("%u", &d.day);
+	printf("Enter month ");
+	scanf_s("%u", &d.month);
+	printf("Enter year ");
+	scanf_s("%u", &d.year);
+	return d;
+}
+
+time input_time() {
+	time t;
+	printf("Enter hours ");
+	scanf_s("%u", &t.h);
+	printf("Enter minutes ");
+	scanf_s("%u", &t.m);
+	return t;
+}
+
+void print_date(date d) {
+	printf("Current date is: %u.%u.%u\n", d.day, d.month, d.year);
+}
+
+void print_time(time t) {
+	printf("Current time is: %u:%u", t.h, t.m);
+}
+
+
+int main() {
+	date d = input_date();
+	time t = input_time();
+	print_date(d);
+	print_time(t);
+}
