@@ -1,0 +1,90 @@
+// Task17_9.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include <iostream>
+#include <string>
+using namespace std;
+class My_string {
+    
+    int    long_str;
+    string Admissible_plural;
+    string character_string;
+public:
+     int  long_Adm;
+    void Input_Admissible_plural(string str_Adm) {
+        Admissible_plural = str_Adm;
+        long_Adm = Admissible_plural.length();
+    }
+    void Input_str(string str_) {
+        character_string = str_;
+        long_str = character_string.length();
+        int count = 0;
+        for (size_t i = 0; i < long_str; i++)
+        {
+            for (size_t j = 0; j < long_Adm; j++)
+            {
+                if (Admissible_plural[j] == character_string[i])
+                {
+                    count++;
+                }
+
+            }
+        }
+        if (long_str != count)
+            cout << "error" << '\n';
+    
+    }
+    void add_symbol(char ch) {
+        character_string = character_string + ch;
+
+    }
+    string get_str() {
+        return character_string;
+    }
+    void remove_symbol(char ch_) {
+        for (size_t i = 0; i < 2; i++)
+        {
+
+
+            character_string.erase(character_string.find(ch_), 1);
+
+
+        }
+    }
+
+    int get_long() {
+        return character_string.length();
+
+    }
+
+    void concat_str(My_string str_) {
+        character_string = character_string + str_.character_string;
+    }
+    
+
+};
+
+int main()
+{
+    My_string m_str;
+    My_string m_str1;
+    m_str.Input_Admissible_plural("abcABC");
+    m_str1.Input_Admissible_plural("abcABC");
+
+    m_str.Input_str("aBc");
+    
+    cout << m_str.get_str()<<"\n";
+    cout << m_str.get_long() << "\n";
+    m_str.add_symbol('a');
+    cout << m_str.get_str() << "\n";
+    cout << m_str.get_long() << "\n";
+    m_str.remove_symbol('a');
+    cout << m_str.get_str() << "\n";
+    cout << m_str.get_long() << "\n";
+   
+    m_str1.Input_str("bcccc");
+    m_str.concat_str(m_str1);
+    cout << m_str.get_str() << "\n";
+    cout << m_str.get_long() << "\n";
+
+}
